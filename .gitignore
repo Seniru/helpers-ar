@@ -1,0 +1,7 @@
+deps/*
+lit.exe
+luvi.exe
+luvit.exe
+discordia.log
+gateway.json
+.vscode/*
