@@ -3,4 +3,3 @@ function run() {
 }
 
 run
-# chmod +x script.bash
