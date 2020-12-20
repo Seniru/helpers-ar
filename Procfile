@@ -1,1 +1,1 @@
-bot: ./script.bash
+bot: luvit ./src/bot.lua
