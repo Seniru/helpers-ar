@@ -49,7 +49,7 @@ cmds["verify"] = {
         end
 
         if msg.member:hasRole(config["role-verified"]) then
-            local m = msg.channel:send("You are verified already!")
+            local m = msg.channel:send("لقد تم التحقق من هويتك من قبل  !")
             return timer.setTimeout(1000 * 60 * 1, coroutine.wrap(function()
                 msg:delete()
                 m:delete()
@@ -59,7 +59,7 @@ cmds["verify"] = {
         verificationKeys[msg.author.id] = { key = generateKey(10), toLink = args[2], attempts = 5 }
         timer.setTimeout(1000 * 60 * 1, coroutine.wrap(function() msg:delete() end))
 
-        local res, err = forum.createPrivateMessage(args[2], "AR Helpers verification",
+        local res, err = forum.createPrivateMessage(args[2], "التحقق من خادم فريق المساعدين العربي ",
         ([[ [p=center][img]https://i.imgur.com/w16ABsN.png[/img][/p]
         مرحبا بك [color=#FEB1FC][b]%s[/b][/color]
         
@@ -78,15 +78,15 @@ cmds["verify"] = {
 
         local e = msg.channel:send({
             embed = {
-                title = "Verification",
-                description = "لقد ارسلنا رساله خاصه في المنتدى الخاص بك للتأكيد من هويتك \n\n [مفتوح](https://atelier801.com/conversation?" .. res.raw_data .. ")"
+                title = "التحقق",
+                description = "لقد ارسلنا رساله خاصه في المنتدى الخاص بك للتأكيد من هويتك \n\n [فتح](https://atelier801.com/conversation?" .. res.raw_data .. ")"
             }
         })
         timer.setTimeout(1000 * 60 * 5, coroutine.wrap(function() e:delete() end))
         timer.setTimeout(1000 * 60 * 5, coroutine.wrap(function() -- expire the key in 5 minutes
             if not verificationKeys[msg.author.id] then return end
             verificationKeys[msg.author.id] = nil
-            local m = msg.channel:send("<@" .. msg.author.id .. "> فشل التحقق!!! يرجى المحاوله مره اخرى")
+            local m = msg.channel:send(("انتهت مهله %s  للتحقق! افعل ذالك مره اخرى في وقت لاحق من فضلك!"):format("<@" .. msg.author.id .. ">"))
             timer.setTimeout(1000 * 60 * 5, coroutine.wrap(function() m:delete() end))
         end))
     end
@@ -112,7 +112,7 @@ discord:on("messageCreate", function(msg)
         if keys then
             -- checking if the given key matches with the generated key
             if keys.key == msg.content then
-                local m = msg.channel:send("Linking you with " .. keys.toLink)
+                local m = msg.channel:send("ربطك بـ " .. keys.toLink)
                 timer.setTimeout(1000 * 60 * 1, coroutine.wrap(function() m:delete() end))
                 verificationKeys[msg.author.id] = nil
                 msg.member:addRole(config["role-verified"])
