@@ -137,7 +137,7 @@ discord:on("messageCreate", function(msg)
     local cmd = cmds[args[1]]
     if cmd then
         if cmd.isForumAction then
-            if not (forum.isConnected() or forum.isConnectionAlive()) then
+            if not (forum.isConnected() and forum.isConnectionAlive()) then
                 forum.connect(os.getenv("USERNAME"), os.getenv("PASSWORD"))
             end
         end
