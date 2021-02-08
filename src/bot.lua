@@ -72,7 +72,7 @@ cmds["verify"] = {
         if not res then
             print(err)
             verificationKeys[msg.author.id] = nil
-            local m = msg.channel:send("لقد واجهنا خطأ اثاء ارسال رساله خاصه للتحقق من اسم المستخدم الخاص بك حاول مره اخرى لاحقاً!")
+            local m = msg.channel:send("لقد واجهنا خطأ اثناء إرسال رسالة خاصة للتحقق من اسم المستخدم الخاص بك، حاول مرة اخرى لاحقا!")
             return timer.setTimeout(1000 * 60 * 1, coroutine.wrap(function() m:delete() end))
         end
 
