@@ -41,7 +41,7 @@ cmds["verify"] = {
     f = function(args, msg)
 
         if not args[2] then
-            local m = msg.channel:send("Please enter a valid username")
+            local m = msg.channel:send("الرجاء إدخال اسم مستخدم صالح")
             return timer.setTimeout(1000 * 60 * 1, coroutine.wrap(function()
                 msg:delete()
                 m:delete()
